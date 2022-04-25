@@ -1,23 +1,48 @@
 version: "3.9"
 services:
+    service1:
+        container_name: service1
+        build: .
+        image: node-run
+        ports:
+            - "3000:3000"
+        command: npm run service1
+        environment:
+            TZ: Asia/Bangkok
+    service2:
+        container_name: service2
+        image: node-run
+        ports:
+            - "3001:3001"
+        command: npm run service2
+        environment:
+            TZ: Asia/Bangkok
+    service3:
+        container_name: service3
+        image: node-run
+        ports:
+            - "3002:3002"
+        command: node service3.js
+        environment:
+            TZ: Asia/Bangkok
     zipkin:
-        container_name: zipkin
+        container_name: Zipkin
         image: openzipkin/zipkin
         ports:
             - "9411:9411"
         environment:
             TZ: Asia/Bangkok
     prometheus:
-        container_name: prometheus
+        container_name: Prometheus
         image: prom/prometheus
         ports:
             - "9090:9090"
         environment:
             TZ: Asia/Bangkok
     grafana:
-        container_name: grafana
+        container_name: Grafana
         image: grafana/grafana-enterprise:8.2.0
         ports:
-            - "9999:3000"
+            - "9999:9999"
         environment:
             TZ: Asia/Bangkok
